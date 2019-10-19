@@ -7,6 +7,8 @@
     "start:dev": "nodemon ./bin/www"
   },
   "dependencies": {
+    "angular": "^1.7.8",
+    "bower": "^1.8.8",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -15,6 +17,21 @@
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
-  }
+    "@types/angular": "^1.6.56",
+    "nodemon": "^1.19.4",
+    "parcel-bundler": "^1.12.4"
+  },
+  "description": "ChatExample",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibrahimd1/chatExample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibrahimd1/chatExample/issues"
+  },
+  "homepage": "https://github.com/ibrahimd1/chatExample#readme"
 }

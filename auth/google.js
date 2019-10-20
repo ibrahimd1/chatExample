@@ -4,9 +4,6 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 // models
 const User = require("../models/users");
 
-const clientId = process.env.GOOGLE_LOGIN_CLIENT_ID;
-console.log("Sabit:" + clientId);
-
 passport.use(
   new GoogleStrategy(
     {
@@ -18,7 +15,6 @@ passport.use(
     // @ts-ignore
     (accessToken, refreshToken, profile, done) => {
       const data = profile._json;
-      console.log(data);
       // @ts-ignore
       User.findOrCreate(
         {

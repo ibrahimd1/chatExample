@@ -5,7 +5,56 @@ append stylesheets
 
 block content
   div(ng-controller="chatController")
-    | Chat
+    .wrapper
+      .container
+        .left
+          .top
+            ul.tab
+              li.conversations(ng-click="changeTab(1)")
+                a(ng-class="{active: activeTab === 1}") Chats
+              li.onlineUsers(ng-click="changeTab(2)")
+                a(ng-class="{active: activeTab === 2}") Online Users
+
+          .tabArea
+            .tab-left(ng-show="activeTab === 1")
+              ul.people
+                li.person
+                  span.name Thomas Bangalter
+                  span.preview I was wondering...
+                li.person.active
+                  span.name Dog Woofson
+                  span.preview I've forgotten how it felt before
+
+            .tab-right(ng-show="activeTab === 2")
+              ul.people
+                li.person
+                  span.name Thomas Bangalter
+                  span.preview I was wondering...
+            .bottom
+              button New Group
+        .right
+          .top
+            span
+              span.name Dog Woofson
+          .chat.active-chat
+            .bubble.you
+              span Hakan Aydın
+              |Hello can you hear me?
+            .bubble.you
+              span Hakan Aydın
+              | I'm in California dreaming
+            .bubble.me ... about who we used to be.
+            .bubble.me Are you serious?
+            .bubble.you
+              span Hakan Aydın
+              | When we were younger and free...
+            .bubble.you
+              span Hakan Aydın
+              | I've forgotten how it felt before
+          .write
+            input(type='text')
+            a.write-link.send(href='javascript:;')
 
 append javascripts
+  script(src="http://localhost:3000/socket.io/socket.io.js")
   script(src="/javascripts/controller/chatController.js")  

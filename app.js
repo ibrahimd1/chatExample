@@ -7,11 +7,13 @@ const passport = require("passport");
 const session = require("express-session");
 const redisStore = require("./helper/redisStore");
 
-const indexRouter = require("./routes/index");
+const dotenv = require("dotenv");
+dotenv.config();
+
+const index = require("./routes/index");
 const auth = require("./routes/auth");
 const chat = require("./routes/chat");
-
-require("dotenv").config();
+const messages = require("./routes/messages");
 
 const app = express();
 
@@ -24,6 +26,9 @@ const db = require("./helper/db")();
 
 //middleware
 const isAuthenticated = require("./middleware/isAuthenticated");
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -45,9 +50,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/", indexRouter);
+app.use("/", index);
 app.use("/auth", auth);
 app.use("/chat", isAuthenticated, chat);
+app.use("/messages", isAuthenticated, messages);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
